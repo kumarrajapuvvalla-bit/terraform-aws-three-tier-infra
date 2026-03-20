@@ -1,14 +1,3 @@
-# ============================================================
-# versions.tf — Terraform and provider version constraints
-#
-# Pins the Terraform CLI version and AWS provider to known-good
-# ranges. Using pessimistic version constraints (~>) ensures we
-# automatically pick up patch/minor releases while avoiding
-# unexpected breaking changes from major version bumps.
-#
-# Update these intentionally after reading provider changelogs.
-# ============================================================
-
 terraform {
   required_version = ">= 1.6.0"
 
@@ -28,9 +17,6 @@ terraform {
   }
 }
 
-# ---------------------------------------------------------------------------
-# Primary provider — us-east-1 (default region, overridable via variable)
-# ---------------------------------------------------------------------------
 provider "aws" {
   region = var.aws_region
 
@@ -40,16 +26,10 @@ provider "aws" {
       Environment = var.environment
       ManagedBy   = "Terraform"
       Owner       = var.owner
-      Repository  = "terraform-aws-three-tier-infra"
     }
   }
 }
 
-# ---------------------------------------------------------------------------
-# Secondary provider alias — us-west-2 (multi-region readiness)
-# Used for cross-region replication, DR, or read replicas when required.
-# Reference with: provider = aws.secondary
-# ---------------------------------------------------------------------------
 provider "aws" {
   alias  = "secondary"
   region = var.secondary_region
@@ -60,7 +40,6 @@ provider "aws" {
       Environment = var.environment
       ManagedBy   = "Terraform"
       Owner       = var.owner
-      Repository  = "terraform-aws-three-tier-infra"
     }
   }
 }
