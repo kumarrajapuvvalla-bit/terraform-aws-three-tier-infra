@@ -1,0 +1,40 @@
+# Copy this file to terraform.tfvars and fill in your values.
+# Never commit terraform.tfvars — it is listed in .gitignore.
+# Sensitive values (DB credentials) are managed via Secrets Manager.
+
+project_name     = "three-tier"
+environment      = "dev"
+owner            = "platform-engineering"
+aws_region       = "us-east-1"
+secondary_region = "us-west-2"
+
+vpc_cidr                  = "10.0.0.0/16"
+availability_zones        = ["us-east-1a", "us-east-1b"]
+public_subnet_cidrs       = ["10.0.1.0/24", "10.0.2.0/24"]
+private_app_subnet_cidrs  = ["10.0.11.0/24", "10.0.12.0/24"]
+private_data_subnet_cidrs = ["10.0.21.0/24", "10.0.22.0/24"]
+enable_nat_gateway        = true
+
+frontend_instance_type    = "t3.micro"
+backend_instance_type     = "t3.small"
+bastion_instance_type     = "t3.micro"
+frontend_min_size         = 2
+frontend_max_size         = 6
+frontend_desired_capacity = 2
+backend_min_size          = 2
+backend_max_size          = 6
+backend_desired_capacity  = 2
+key_pair_name             = ""
+
+db_instance_class          = "db.t3.medium"
+db_name                    = "appdb"
+db_engine_version          = "15.4"
+db_allocated_storage       = 20
+db_max_allocated_storage   = 100
+db_multi_az                = false
+db_deletion_protection     = false
+db_backup_retention_period = 7
+
+cloudwatch_retention_days = 30
+alarm_email               = "your-email@example.com"
+cpu_alarm_threshold       = 75
