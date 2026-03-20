@@ -1,0 +1,27 @@
+variable "project_name"              { type = string; default = "three-tier" }
+variable "environment"               { type = string; default = "prod" }
+variable "owner"                     { type = string; default = "platform-engineering" }
+variable "aws_region"                { type = string; default = "us-east-1" }
+variable "vpc_cidr"                  { type = string; default = "10.1.0.0/16" }
+variable "availability_zones"        { type = list(string); default = ["us-east-1a","us-east-1b"] }
+variable "public_subnet_cidrs"       { type = list(string); default = ["10.1.1.0/24","10.1.2.0/24"] }
+variable "private_app_subnet_cidrs"  { type = list(string); default = ["10.1.11.0/24","10.1.12.0/24"] }
+variable "private_data_subnet_cidrs" { type = list(string); default = ["10.1.21.0/24","10.1.22.0/24"] }
+variable "frontend_instance_type"    { type = string; default = "t3.medium" }
+variable "backend_instance_type"     { type = string; default = "t3.medium" }
+variable "bastion_instance_type"     { type = string; default = "t3.micro" }
+variable "frontend_min_size"         { type = number; default = 2 }
+variable "frontend_max_size"         { type = number; default = 10 }
+variable "frontend_desired_capacity" { type = number; default = 2 }
+variable "backend_min_size"          { type = number; default = 2 }
+variable "backend_max_size"          { type = number; default = 10 }
+variable "backend_desired_capacity"  { type = number; default = 2 }
+variable "key_pair_name"             { type = string; default = "" }
+variable "db_instance_class"         { type = string; default = "db.t3.medium" }
+variable "db_name"                   { type = string; default = "appdb" }
+variable "db_username"               { type = string; sensitive = true }
+variable "db_engine_version"         { type = string; default = "15.4" }
+variable "db_allocated_storage"      { type = number; default = 100 }
+variable "db_max_allocated_storage"  { type = number; default = 500 }
+variable "alarm_email"               { type = string }
+variable "cpu_alarm_threshold"       { type = number; default = 70 }
