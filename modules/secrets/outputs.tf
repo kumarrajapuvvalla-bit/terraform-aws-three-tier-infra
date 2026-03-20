@@ -1,0 +1,3 @@
+output "db_secret_arn"        { value = aws_secretsmanager_secret.db_credentials.arn;            description = "DB credentials secret ARN."; sensitive = true }
+output "db_secret_name"       { value = aws_secretsmanager_secret.db_credentials.name;           description = "DB credentials secret name." }
+output "db_secret_version_id" { value = aws_secretsmanager_secret_version.db_credentials.version_id; description = "Current secret version ID." }
